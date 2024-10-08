@@ -3,9 +3,12 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+
 function App() {
 
   const [name, setName] = useState("Ashim")
+
+  const [inputValue, setInputValue] = useState('')
 
   const [form, setForm] = useState({
     name: "",
@@ -16,12 +19,11 @@ function App() {
   const handleClick = () => {
     alert("Button clicked");
   };
-
   const handleMouseOver = () => {
     alert("Mouse over");
   };
 
-  // Event Handling in input and forms
+  // Event Handling in input
   const handleChange = (e) => {
     setName(e.target.value);
   };
@@ -29,6 +31,16 @@ function App() {
     setForm({...form, [e.target.name]:e.target.value})
     console.log(form)
   }
+
+  // Event Handling in Form submission
+  function handleInput(event){
+    setInputValue(event.target.value);
+  }
+  function handleSubmit(event){
+    event.preventDefault();
+    alert(`Form submitted with: ${inputValue}`);
+  }
+
 
   return (
     <>
@@ -52,6 +64,13 @@ function App() {
 
       <input type="text" name="name" value={form.name} onChange={handleFormChange} />
       <input type="text" name="phone" value={form.phone} onChange={handleFormChange} />
+
+      <br />
+
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={inputValue} onChange={handleInput} />
+        <button type="submit">Submit</button>
+      </form>
     </>
   );
 }
