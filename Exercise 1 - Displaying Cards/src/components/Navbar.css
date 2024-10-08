@@ -1,0 +1,15 @@
+li{
+    list-style-type: none;
+    font-size: 20px;
+}
+ul{
+    display: flex;
+    gap: 5vw;
+}
+.nav{
+    background-color: blanchedalmond;
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    margin-bottom: 2vw;
+}
