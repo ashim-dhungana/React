@@ -1,31 +1,34 @@
-import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Login from './components/Login'
 import About from './components/About'
-import { createBrowserRouter } from 'react-router-dom'
+import User from './components/User'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />
+      element: <> <Navbar /><Home /> </>
     },
     {
       path: "/login",
-      element: <Login />
+      element: <> <Navbar /><Login /> </>
     },
     {
       path: "/about",
-      element: <About />
+      element: <> <Navbar /><About /> </>
+    },
+    {
+      path: "/user/:username",
+      element: <> <Navbar /><User /> </>
     }
   ])
 
   return (
     <>
-      <Navbar />
       <RouterProvider router={router} />
     </>
   )
