@@ -3,25 +3,6 @@ import "./App.css";
 
 function App() {
   const [showbtn, setshowbtn] = useState(false);
-  const [todos, setTodos] = useState([
-    {
-      title: "Hey",
-      desc: "First todo",
-    },
-    {
-      title: "Hello",
-      desc: "Second todo",
-    },
-  ]);
-
-  const Todo = ({todo}) => {
-    return (
-      <>
-        <div className="todo">{todo.title}</div>
-        <div className="todo">{todo.desc}</div>
-      </>
-    );
-  };
 
   return (
     <>
@@ -37,19 +18,6 @@ function App() {
       ) : (
         <button>showtbn is False</button>
       )}
-
-
-      {/* Redering Lists */}
-      {todos.map(todo => {
-        return <Todo key={todo.title} todo={todo} />
-
-        // return (<div key={todo.title}>
-        //     <div className="todo">{todo.title}</div>
-        //     <div className="todo">{todo.desc}</div>
-        //   </div>
-        // )
-
-      })}
 
 
       <div className="card">
