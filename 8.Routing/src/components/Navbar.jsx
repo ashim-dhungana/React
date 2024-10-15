@@ -1,22 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
+
+    // Using Manual Navigation
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+      alert("Logged In");
+      navigate("/");
+    };
+
   return (
     <div>
       <nav>
-        <Link to="/">
+
+        {/* Conditional classes where either 'red' class is added or empty class is added according to the condition */}
+
+        <NavLink className={(e)=>{return e.isActive?"red":""}} to="/">
           <li>Home</li>
-        </Link>
-        <Link to="/login">
+        </NavLink>
+
+        <NavLink className={(e)=>{return e.isActive?"red":""}} to="/login">
           <li>Login</li>
-        </Link>
-        <Link to="/about">
+        </NavLink>
+
+        <NavLink className={(e)=>{return e.isActive?"red":""}} to="/about">
           <li>About</li>
-        </Link>
+        </NavLink>
+
+        <button onClick={handleLogin}>Login Now</button>
+
       </nav>
     </div>
   );
+
 };
 
 export default Navbar;
