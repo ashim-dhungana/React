@@ -3,6 +3,8 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import Navbar from "./components/Navbar";
+
+// counterContext is created in js file
 import { counterContext } from "./context/context";
 
 function App() {
@@ -10,6 +12,9 @@ function App() {
 
   return (
     <>
+
+    {/* Wrapping up all code in context provider to pass the values */}
+
       <counterContext.Provider value={ {count, setCount} }>
         <Navbar />
 

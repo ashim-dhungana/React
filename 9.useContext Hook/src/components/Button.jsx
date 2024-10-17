@@ -4,13 +4,13 @@ import { useContext } from "react";
 import { counterContext } from "../context/context";
 
 const Button = () => {
-
-    const value = useContext(counterContext)
-    const setCount = value.setCount
+  // Accessing values from counterContext
+  const value = useContext(counterContext);
+  const setCount = value.setCount;
 
   return (
     <div>
-      <button onClick={()=> setCount(count => count+1)}>
+      <button onClick={() => setCount((count) => count + 1)}>
         <span>
           <Component1 />
         </span>
