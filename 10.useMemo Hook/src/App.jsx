@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { useMemo } from "react";
+import Memo from "./components/Memo";
 
 // An array that returns the number at index 4 million
 const nums = new Array(5_000_000).fill(0).map((_, i) => {
@@ -24,6 +25,9 @@ function App() {
 
   return (
     <>
+
+  <Memo />
+
       <div>
         <span> Magical number is {magical.index} </span>
 
