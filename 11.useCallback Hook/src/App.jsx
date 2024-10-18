@@ -1,13 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useCallback } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  const [adjective, setAdjective] = useState("amazing");
+
+  const getAdjective = () => {
+    return "good" + count;
+  }
+
+  // Freezes the function so it doesn't change on another re-render
+  const getAdjective2 = useCallback(() => {
+    return "good" + count;
+  }, []);
 
   return (
     <>
+      <Navbar adjective={"amazing"} getAdjective={getAdjective} getAdjective2={getAdjective2} />
+
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -29,7 +43,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
