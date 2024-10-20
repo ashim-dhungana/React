@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+
+import { useForm } from "react-hook-form";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      {isSubmitting && <div>Loading...</div>}
+
+      <div className="container">
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
+          {/* Handling General error in input field */}
+          <input
+            type="text"
+            placeholder="name"
+            {...register("name", {
+              required: true,
+              minLength: 3,
+              maxLength: 10,
+            })}
+          />
+          {errors.name && <div>There is an error</div>}
+
+          <br />
+
+          {/* Handling specific error according to validation rule */}
+          <input
+            placeholder="username"
+            type="text"
+            {...register("username", {
+              required: { value: true, message: "This field is required" },
+              minLength: { value: 3, message: "Min Length is 3" },
+              maxLength: { value: 10, message: "Max Length is 10" },
+            })}
+          />
+          {errors.username && (
+            <div className="red"> {errors.username.message} </div>
+          )}
+
+          <br />
+
+          <input
+            placeholder="password"
+            {...register("password")}
+            type="password"
+          />
+
+          <hr />
+
+          <input disabled={isSubmitting} type="submit" value="submit" />
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
