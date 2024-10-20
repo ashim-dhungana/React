@@ -7,11 +7,35 @@ function App() {
   const {
     register,
     handleSubmit,
-    watch,
+    setError,
     formState: { errors, isSubmitting },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const delay = (d) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, d * 1000);
+    });
+  };
+
+  // Simulating a 2 second delay for loading
+  const onSubmit = async (data) => {
+    await delay(2);
+    console.log(data);
+
+    // Handling server-side error
+    if (data.username !== "ashim") {
+      setError("myform", {
+        message: "The form is not valid according to server",
+      });
+    }
+    if (data.name === "newuser") {
+      setError("block", {
+        message: "This user is blocked",
+      });
+    }
+  };
 
   return (
     <>
@@ -58,6 +82,8 @@ function App() {
           <hr />
 
           <input disabled={isSubmitting} type="submit" value="submit" />
+          {errors.myform && <div> {errors.myform.message} </div>}
+          {errors.block && <div> {errors.block.message} </div>}
         </form>
       </div>
     </>
