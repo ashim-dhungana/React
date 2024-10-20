@@ -19,10 +19,15 @@ function App() {
     });
   };
 
-  // Simulating a 2 second delay for loading
   const onSubmit = async (data) => {
+    // Simulating a 2 second delay
     await delay(2);
     console.log(data);
+
+    let r = await fetch ("http://localhost:3000/")
+    let res = await r.text()
+    console.log(data,res)
+
 
     // Handling server-side error
     if (data.username !== "ashim") {
